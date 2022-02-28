@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container-fluid">
+ <div class="col-md-8 mt-3">
+      <div style="border-radius: 19px 19px 19px 19px;" class="card-body shadow1">
+        <h3 class="font-weight-bold">About Me</h3>
+        <p>Hae there, am John Kyalo. A passionate web developer. I code exclusively in Python 
+        using the Django framework, HTML, CSS and Bootstrap for the frontend.</p>
+        <p class='text-muted'><a class="font-weight-bold" href="{% url 'blog:contact' %}">Contact Us</a> for the following;
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-light">Web Development</li>
+            <li class="list-group-item list-group-item-light">Website-Management Systems Integration</li>
+            <li class="list-group-item list-group-item-light">Data Analytics and Visualization</li>
+            <li class="list-group-item list-group-item-light">Python and Django Tutorials</li>
+          </ul>
+        </p>
+      </div>
+  </div>
+</div>
+{%endblock%}

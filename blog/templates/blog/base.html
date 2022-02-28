@@ -1,0 +1,118 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load flatpages %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <!-- fontawesome -->
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <title>FiveTal</title>
+  </head>
+  <body>
+	<header class="container">
+  	<nav class="navbar navbar-expand-lg fixed-top shadow">
+	    <div class="container">
+	  		<div class="navbar-brand mr-4">
+	  			<div class="heading shadow2">
+	  				<h2><a href="{% url 'blog:blog-home' %}">FiveTal</a></h2>
+	  			</div>
+	  		</div>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"><i class="fa fa-bars" style="color:#fff; font-size:28px;"></i></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog:blog-home' %}"><i class="fa fa-home" aria-hidden="true"></i>
+                Home</a>
+            </div>
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                  {% if group.name == 'authors' %}
+                       <a class="nav-item nav-link mr-4" href="{% url 'blog:post-create' %}">Create Post</a>
+                  {% endif %}
+                {% endfor %}
+                 <p class="nav-item mt-2">                        
+                  {{ user.username }}
+                </p> 
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'blog:contact' %}">Contact</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
+              {% endif %}
+              <a class="ml-4 text-center" href="{% url 'blog:search' %}"><i class="fa fa-search mt-2"></i></a>
+            </div>
+	      </div>
+	    </div>
+	  </nav>
+  	</header>
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+        <div class="mt-5">
+          {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+              {% endfor %}
+                </div>
+        </div>
+          {% endif %}
+      
+          {% block content %}
+            
+          {% endblock %}
+            <div class="ml-5 mt-4">
+              {% if is_paginated %} {% if page_obj.has_previous %} <a class="btn btn-outline-success mb-4" href="?page=1">First</a>
+              <a class="btn btn-outline-success mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a> {% endif %}
+              {% for num in page_obj.paginator.page_range %} {% if page_obj.number == num %} <a class="btn btn-success mb-4"
+                href="?page={{ num }}">{{ num }}</a> {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a
+                class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a> {% endif %} {% endfor %}
+              {% if page_obj.next %} <a class="btn btn-outline-success mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+              <a class="btn btn-outline-success mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a> {% endif %} {% endif %}
+            </div>
+        
+            
+          </div>
+    </div>        
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer class="py-3 bg-grey">
+    <p class="m-0 text-dark text-center ">Copyright &copy; 2019 FiveTal 
+      <a href="/pages/about/">About Us</a>
+      <a href="/pages/policy"> &nbsp; Policy &nbsp; </a>
+      <a href="/pages/termsandconditions/">Terms and Conditions</a>
+      
+    </p>
+  </footer>
+
+
+
+
+    <!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>

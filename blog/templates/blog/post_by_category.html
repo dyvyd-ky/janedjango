@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h4 class="ml-4 font-weight-bold kasee"> {{ category.name }} ({{ page_obj.paginator.count }}) </h4>
+    <div class="container-fluid">
+      <div class="row">  
+        <div class="col-md-8 mt-3 shadow1">
+            <!-- Blog Entries Column -->
+          <div class="flex-container mt-4">
+            {% for post in posts %} 
+            <div style="border-radius: 0px 0px 49px 19px;" class="col-md-4 shadow3 mt-4">
+                
+                  <img class="img-fluid rounded" src="{{ post.photo.url }}">
+                  
+                  <p class="text-muted"> <a href="{% url 'blog:user-posts' post.author.username %}">{{ post.author }}</a> 
+                    <a href="{% url 'blog:post_by_category' post.category.pk %}">
+                    {{ post.category }}</a> <small>{{ post.publish_date|date:"F d, Y"}}</small>
+                  </p>
+                  <h5 class="font-weight-bold"><a class="post-title" href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a></h5>
+                  
+            </div>
+            {% endfor %} 
+          </div>  
+        </div>
+        {% include 'blog/services.html' %}
+      </div>  
+    </div>
+{% endblock content %}
