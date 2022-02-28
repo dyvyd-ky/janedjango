@@ -7,8 +7,8 @@ body {
 }
 
 .shadow2 {
-    /*box-shadow: 0px 0px 5px 1px rgba(255, 255, 0, 1);*/
-    box-shadow: 0px 0px 5px 1px rgb(255, 145, 0);
+     box-shadow: 0px 0px 5px 1px rgba(255, 255, 0, 1);
+    /*box-shadow: 0px 0px 5px 1px rgb(255, 255, 255);*/
 
 }
 
@@ -34,12 +34,13 @@ h6 {
 }
 
 .post-title {
-	color: #47694B;
+	/*color: #47694B;*/
+    color: #014601;
+    text-decoration: none;
 }
 
-
 a {
-   color: rgb(0, 153, 0); 
+   color: #008b15; 
    
 }
 
@@ -55,8 +56,7 @@ p {
 
 .navbar {
     margin-top: 0px;
-    background-color: #063e10b2;
-    /*background-color: rgba(2, 53, 0, 0.575);*/
+    background-color: rgba(0, 48, 0, 0.89);
     /*background-color: rgba(10, 58, 9, 0.651);*/
     border-right: 5px;
     height: auto;
@@ -74,14 +74,16 @@ p {
 }
 
 .heading h2 {
-    margin-top: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-align: center;
     font-family: monospace;
     margin-left: 2px;
 }
 
 .list-group-item {
-	background-color: #f8f8f8!important;
+	background-color: #f8f8f8;
 	font-family: monospace;
 	color: #363636;
 }
@@ -95,10 +97,10 @@ p {
     border-radius: 5px;
 }
 
-.container-fluid {
+/*.container-fluid {
     width: 95%;
-    /*background-image: url("images/bg22.jpg");*/
-}
+    /*background-image: url("images/bg22.jpg");
+}*/
 
 .flex-container {
     display: flex;
@@ -122,6 +124,12 @@ p {
     color: #d3d3d3;
 }
 
+.shadow-article {
+    box-shadow: inset -4px -3px 9px -3px rgba(0,0,0,0.23);
+}
+.recent-shadow {
+  box-shadow: 5px 5px 10px -3px rgba(0,0,0,0.38);
+}
 
 /* Style all font awesome icons */
 

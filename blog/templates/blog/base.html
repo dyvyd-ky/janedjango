@@ -19,7 +19,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
-    <title>FiveTal</title>
+    <title>PyDjem</title>
   </head>
   <body>
 	<header class="container">
@@ -27,7 +27,7 @@
 	    <div class="container">
 	  		<div class="navbar-brand mr-4">
 	  			<div class="heading shadow2">
-	  				<h2><a href="{% url 'blog:blog-home' %}">FiveTal</a></h2>
+	  				<h2><a href="{% url 'blog:blog-home' %}">PyDjem</a></h2>
 	  			</div>
 	  		</div>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,14 +55,14 @@
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
               {% endif %}
-              <a class="btn btn-outline-warning" class="ml-4 text-center" href="{% url 'blog:search' %}"><i class="fa fa-search mt-2"></i></a>
+              <a class="ml-4 text-center" style="color: yellow;" href="{% url 'blog:search' %}"><i class="fa fa-search mt-2"></i></a>
             </div>
 	      </div>
 	    </div>
 	  </nav>
   	</header>
 
-  <div class="container-fluid mt-5">
+  <div class="container mt-5">
     <div class="row">
         <div class="mt-5">
           {% if messages %}
@@ -96,7 +96,7 @@
 
   <!-- Footer -->
   <footer class="py-3 bg-grey">
-    <p class="m-0 text-dark text-center ">Copyright &copy; 2019 FiveTal 
+    <p class="m-0 text-dark text-center ">Copyright &copy; 2021 PyDjem 
       <a href="/pages/about/">About Us</a>
       <a href="/pages/policy"> &nbsp; Policy &nbsp; </a>
       <a href="/pages/termsandconditions/">Terms and Conditions</a>

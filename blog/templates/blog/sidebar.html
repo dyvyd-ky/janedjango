@@ -1,17 +1,48 @@
 {% block sidebar %}
 <div class="col-md-4 mt-4">
-		<div style="border-radius: 19px 19px 19px 19px;" class="card-body shadow1">
-			<h3 class="font-weight-bold">Recent Posts</h3>
-			{% for post in recent_posts %}
-					<hr>
-					<a href="{% url 'blog:post-detail' post.slug %}"><img class="col-md-5 float-left img-fluid" src="{{ post.photo.url }}"></a>	
-					<p>
-						<a href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a>
-						<a href="{% url 'blog:post_by_category' post.category.pk %}"><br>
-							{{ post.category }}</a> <small>{{ post.publish_date|date:"F d, Y"}}</small>
-					</p>
+	<div style="border-radius: 19px 19px 19px 19px;" class="card-body mt-4">
+		<h3>Our Services</h3>
+		<p class='text-muted'><a class="font-weight-bold" href="{% url 'blog:contact' %}">Contact Us</a> for the following;
+		<ul class="list-group">
+			<li class="list-group-item list-group-item-light">Web Development</li>
+			<li class="list-group-item list-group-item-light">Website-Management Systems Integration</li>
+			<li class="list-group-item list-group-item-light">Data Analytics and Visualization</li>
+			<li class="list-group-item list-group-item-light">Python and Django Tutorials</li>
+	</ul>
+		</p>
+	</div>
+
+	
+
+	<div class="container">
+		<br><hr>
+		<h5 class="font-weight-bold">Related Articles</h5>
+			{% for post in related_post %} 
+				  <!--<img class="img-fluid" src="{{ post.photo.url }}">-->
+					  <p class="shadow-article">
+						<!--<img class="img-fluid profile mr-2" src="{{ post.author.profile.image.url }}">-->
+						  <a href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a>
+					
+					</p>          
+			  {% endfor %} 
+
+		<hr>
+		<h5 class="font-weight-bold">Recent Posts</h5>
+		{% for post in recent_posts %}
+				<!--<a href="{% url 'blog:post-detail' post.slug %}"><img class="col-md-5 float-left img-fluid" src="{{ post.photo.url }}"></a>	-->
+				<p class="recent-shadow">
+					<a href="{% url 'blog:post_by_category' post.category.pk %}">
+						{{ post.category }}</a> <small>{{ post.publish_date|date:"F d, Y"}}</small>
 					<br>
-			{% endfor %}
-		</div>
+					<a href="{% url 'blog:post-detail' post.slug %}">{{ post.title }}</a>
+
+				</p>
+		{% endfor %}
+	</div>
+
+		
+	
+			  
+
 </div>
 {% endblock sidebar %}
